@@ -251,15 +251,24 @@
 
     <script>
         function abrirSobre() {
-            const container = document.getElementById('container');
-            if(!container.classList.contains('open')) {
-                container.classList.add('open');
-                setTimeout(() => {
-                    document.getElementById('btn-photos').style.display = 'block';
-                }, 1400);
-                document.getElementById('cancion').play().catch(e => {});
-            }
-        }
+    const container = document.getElementById('container');
+    const musica = document.getElementById('cancion'); // Referencia al audio
+
+    // 1. REPRODUCCIÓN INMEDIATA: Ponemos el play aquí arriba
+    if (musica) {
+        musica.play().catch(e => console.log("Error de audio:", e));
+    }
+
+    if(!container.classList.contains('open')) {
+        container.classList.add('open');
+        
+        setTimeout(() => {
+            document.getElementById('btn-photos').style.display = 'block';
+        }, 1400);
+        
+        // Borra la línea 260 original si mueves el play arriba
+    }
+}
 
         function mostrarGaleria() {
             document.getElementById('destacada').style.display = 'block';
