@@ -3,172 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Joselyn - Recuerdos de Pongo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital@1&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <title>Para la mejor mamá de Pongo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-red: #d63031;
-            --dark-red: #b32626;
             --soft-pink: #fff5f5;
-            --envelope-w: 400px;
-            --envelope-h: 250px;
         }
 
         body {
             background-color: var(--soft-pink);
+            font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         .rose-corner {
             position: fixed;
-            font-size: 45px;
+            font-size: 2rem;
             z-index: 100;
         }
-        .top-left { top: 20px; left: 20px; }
-        .top-right { top: 20px; right: 20px; }
-        .bottom-left { bottom: 20px; left: 20px; }
-        .bottom-right { bottom: 20px; right: 20px; }
+        .top-left { top: 10px; left: 10px; }
+        .top-right { top: 10px; right: 10px; }
+        .bottom-left { bottom: 10px; left: 10px; }
+        .bottom-right { bottom: 10px; right: 10px; }
 
         .section-hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            width: 100%;
-            padding-top: 2vh; /* Subimos el título casi al tope */
+            text-align: center;
+            padding: 20px;
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem; /* Un poco más grande para que destaque arriba */
             color: var(--primary-red);
-            margin-bottom: 220px; /* Mucho más espacio para la carta */
-            z-index: 10;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
         }
 
         .envelope-container {
+            width: 300px;
+            height: 200px;
+            background-color: #f0f0f0;
             position: relative;
-            width: var(--envelope-w);
-            height: var(--envelope-h);
-            z-index: 5;
-        }
-
-        .envelope-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-color: var(--dark-red);
             cursor: pointer;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        /* Pestaña superior */
-        .envelope-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 30;
-            border-top: 150px solid #ff7675;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            transform-origin: top;
-            transition: all 0.6s ease;
-        }
-
-        /* Bolsillo frontal */
-        .envelope-front {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-bottom: 130px solid var(--primary-red);
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            z-index: 25;
-        }
-
-        .envelope-front::after {
-            content: "";
-            position: absolute;
-            bottom: -130px;
-            left: -200px;
-            width: 0;
-            height: 0;
-            border-bottom: 130px solid transparent;
-            border-left: 200px solid var(--primary-red);
-            border-right: 200px solid var(--primary-red);
+            border: 2px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .letter {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 360px;
-            height: 210px;
-            background: white;
-            z-index: 20;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .letter p {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-        }
-
-        /* ANIMACIÓN AL ABRIR */
-        .envelope-container.open .envelope-wrapper::before {
-            transform: rotateX(180deg);
-            z-index: 5;
-        }
-
-        .envelope-container.open .letter {
-            opacity: 1;
-            transform: translateY(-240px); /* Ajustado para que no choque con el título arriba */
-            z-index: 50;
-            height: auto;
-            min-height: 350px;
-        }
-
-        .btn-photos {
             display: none;
-            background: var(--primary-red);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            border: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 80px; /* Más espacio para el botón */
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(214, 48, 49, 0.4);
-            z-index: 60;
+            background: white;
+            padding: 30px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-top: 20px;
+            border-top: 5px solid var(--primary-red);
+        }
+
+        .main-photo-highlight {
+            display: none;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .photo-card-visible {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 450px;
+            margin: 38px auto;
+            transform: rotate(-2deg);
+        }
+
+        .photo-card-visible img {
+            width: 100%;
+            height: auto;
         }
 
         .section-gallery {
-            padding: 100px 20px;
             display: none;
+            padding: 50px 20px;
             max-width: 1200px;
             width: 100%;
         }
@@ -179,28 +105,15 @@
             gap: 35px;
         }
 
-        .photo-card {
-            background: white;
-            padding: 15px 15px 45px 15px;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-            transform: rotate(var(--r));
-            transition: 0.3s ease;
-        }
-
-        .photo-card:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
-
-        .photo-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .photo-caption {
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            margin-top: 15px;
-            color: #444;
+        #btn-photos {
+            display: none;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -213,69 +126,61 @@
 
     <section class="section-hero">
         <h1>Feliz Día de la Madre</h1>
-        
         <div class="envelope-container" id="container" onclick="abrirSobre()">
-            <div class="envelope-wrapper">
-                <div class="envelope-front"></div>
-                <div class="letter">
-                    <h3 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:1.8rem; margin:0 0 15px 0;">Feliz dia de la madre Joselyn</h3>
-                    <p>
-                        Es un detalle distinto, siempre has demostrado el cariño hacia ponguito y shewy, aunque ella no se encuentra fisicamente aqui está en tu corazon. Se que estan a distancia con pongo y te hago este pequeño detalle conmemorando un pedacito de los momentos que han compartido juntos, espero que pronto se vuelvan a reencontrar :)
-                    </p>
-                </div>
-            </div>
+             <span style="font-family: 'Dancing Script'; font-size: 1.5rem; color: #666;">Haz clic para abrir ✉️</span>
         </div>
-
-        <button class="btn-photos" id="btn-photos" onclick="mostrarGaleria()">Haz clic para ver los recuerdos</button>
         
-        <audio id="cancion" loop>
-            <source src="cancion.mp3" type="audio/mpeg">
-        </audio>
+        <div class="letter" id="letter">
+            <h3 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 1.8rem; margin: 0 0 15px 0;">Feliz día de la madre</h3>
+            <p style="font-family: 'Playfair Display'; font-size: 0.85rem; line-height: 1.6; color: #333;">
+                Es un detalle distinto, siempre has demostrado el cariño hacia ponguito y showy, aunque ella no se encuentra físicamente aquí.
+            </p>
+        </div>
+        <button id="btn-photos" onclick="mostrarGaleria()">Haz clic para ver los recuerdos</button>
+        <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+    </section>
+
+    <section class="main-photo-highlight" id="destacada">
+        <h2 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 2.5rem;">Nuestra foto favorita</h2>
+        <div class="photo-card-visible">
+            <!-- CORRECCIÓN: Se cambió .jpg por .png según tus archivos -->
+            <img src="img/1.png" alt="Foto Principal">
+            <div style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px;">El comienzo de todo 🐾</div>
+        </div>
+        <p style="font-style: italic; color: #666;">Sigue bajando para ver más...</p>
     </section>
 
     <section class="section-gallery" id="galeria">
-        <h2 style="text-align:center; font-family:'Dancing Script'; color:var(--primary-red); font-size:3.8rem; margin-bottom:70px;">Recuerdos de Pongo</h2>
         <div class="gallery-grid" id="grid"></div>
-        <footer style="text-align:center; margin-top:120px; padding-bottom:60px; color:#999; font-style:italic;">
+        <footer style="text-align: center; margin-top: 120px; padding-bottom: 60px; color: #999; font-style: italic;">
             "Para tu amor que es mi tesoro..." <br> Con mucho cariño para la mejor mamá de Pongo.
         </footer>
     </section>
 
     <script>
+        const audio = document.getElementById('cancion');
+
         function abrirSobre() {
-            const container = document.getElementById('container');
-            if(!container.classList.contains('open')) {
-                container.classList.add('open');
-                setTimeout(() => {
-                    document.getElementById('btn-photos').style.display = 'block';
-                }, 1400);
-                const music = document.getElementById('cancion');
-                music.play().catch(e => console.log("Carga tu cancion.mp3"));
-            }
+            // Activa la música al interactuar
+            audio.play().catch(e => console.log("Audio bloqueado por el navegador"));
+            document.getElementById('container').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            document.getElementById('btn-photos').style.display = 'block';
         }
 
         function mostrarGaleria() {
-            const galeria = document.getElementById('galeria');
-            galeria.style.display = 'block';
+            document.getElementById('destacada').style.display = 'block';
+            document.getElementById('galeria').style.display = 'block';
             const grid = document.getElementById('grid');
-            grid.innerHTML = ''; 
-
-            for (let i = 1; i <= 21; i++) {
-                const rotation = (Math.random() * 16 - 8).toFixed(2);
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-                card.style.setProperty('--r', rotation + 'deg');
-                
-                card.innerHTML = `
-                    <img src="img/${i}.jpg" alt="Foto ${i}" onerror="this.src='https://via.placeholder.com/400x500?text=Recuerdo+${i}'">
-                    <div class="photo-caption">Recuerdo #${i}</div>
-                `;
-                grid.appendChild(card);
+            for(let i = 2; i <= 22; i++) {
+                const div = document.createElement('div');
+                div.style.background = 'white';
+                div.style.padding = '10px';
+                div.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                div.innerHTML = `<img src="img/${i}.jpg" style="width:100%; height:auto;">`;
+                grid.appendChild(div);
             }
-            
-            setTimeout(() => {
-                window.scrollTo({ top: galeria.offsetTop, behavior: 'smooth' });
-            }, 100);
+            window.scrollTo({ top: document.getElementById('destacada').offsetTop, behavior: 'smooth' });
         }
     </script>
 </body>
