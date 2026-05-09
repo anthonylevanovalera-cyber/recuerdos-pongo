@@ -43,14 +43,14 @@
             justify-content: flex-start;
             align-items: center;
             width: 100%;
-            padding-top: 2vh;
+            padding-top: 2vh; /* Subimos el título casi al tope */
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 4rem; /* Un poco más grande para que destaque arriba */
             color: var(--primary-red);
-            margin-bottom: 220px;
+            margin-bottom: 220px; /* Mucho más espacio para la carta */
             z-index: 10;
         }
 
@@ -70,6 +70,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
+        /* Pestaña superior */
         .envelope-wrapper::before {
             content: "";
             position: absolute;
@@ -83,6 +84,7 @@
             transition: all 0.6s ease;
         }
 
+        /* Bolsillo frontal */
         .envelope-front {
             position: absolute;
             bottom: 0;
@@ -127,6 +129,15 @@
             transform: translateY(20px);
         }
 
+        .letter p {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
+
+        /* ANIMACIÓN AL ABRIR */
         .envelope-container.open .envelope-wrapper::before {
             transform: rotateX(180deg);
             z-index: 5;
@@ -134,7 +145,7 @@
 
         .envelope-container.open .letter {
             opacity: 1;
-            transform: translateY(-240px);
+            transform: translateY(-240px); /* Ajustado para que no choque con el título arriba */
             z-index: 50;
             height: auto;
             min-height: 350px;
@@ -149,36 +160,34 @@
             border: none;
             font-weight: bold;
             font-size: 1.1rem;
-            margin-top: 80px;
+            margin-top: 80px; /* Más espacio para el botón */
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(214, 48, 49, 0.4);
             z-index: 60;
         }
 
-        /* SECCIÓN DE FOTO PRINCIPAL */
-        .main-photo-highlight {
+        .section-gallery {
+            padding: 100px 20px;
             display: none;
-            text-align: center;
-            padding: 50px 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 1200px;
+            width: 100%;
         }
 
-        /* DISEÑO DE POLAROID PARA TODAS LAS FOTOS */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
         .photo-card {
             background: white;
             padding: 15px 15px 45px 15px;
             box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-            transform: rotate(var(--r, 0deg));
-            transition: 0.5s ease;
-            opacity: 0;
-            transform: translateY(30px);
+            transform: rotate(var(--r));
+            transition: 0.3s ease;
         }
 
-        .photo-card.visible {
-            opacity: 1;
-            transform: translateY(0) rotate(var(--r, 0deg));
-        }
+        .photo-card:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
         .photo-card img {
             width: 100%;
@@ -192,20 +201,6 @@
             font-size: 1.5rem;
             margin-top: 15px;
             color: #444;
-        }
-
-        /* GALERÍA */
-        .section-gallery {
-            padding: 50px 20px;
-            display: none;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
         }
     </style>
 </head>
@@ -224,7 +219,7 @@
                 <div class="envelope-front"></div>
                 <div class="letter">
                     <h3 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:1.8rem; margin:0 0 15px 0;">Feliz dia de la madre Joselyn</h3>
-                    <p style="font-family: 'Playfair Display', serif; font-size: 0.85rem; line-height: 1.6; color: #333;">
+                    <p>
                         Es un detalle distinto, siempre has demostrado el cariño hacia ponguito y shewy, aunque ella no se encuentra fisicamente aqui está en tu corazon. Se que estan a distancia con pongo y te hago este pequeño detalle conmemorando un pedacito de los momentos que han compartido juntos, espero que pronto se vuelvan a reencontrar :)
                     </p>
                 </div>
@@ -232,21 +227,14 @@
         </div>
 
         <button class="btn-photos" id="btn-photos" onclick="mostrarGaleria()">Haz clic para ver los recuerdos</button>
-        <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+        
+        <audio id="cancion" loop>
+            <source src="cancion.mp3" type="audio/mpeg">
+        </audio>
     </section>
 
-    <!-- Foto Principal Destacada -->
-    <section class="main-photo-highlight" id="destacada">
-        <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
-        <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
-            <img src="img/1.png" alt="Foto Principal" onerror="this.src='https://via.placeholder.com/600x800?text=Foto+Principal'">
-            <div class="photo-caption">El comienzo de todo 🐾</div>
-        </div>
-        <p style="font-style: italic; color: #666; margin-top: 20px;">Sigue bajando para ver más...</p>
-    </section>
-
-    <!-- Galería Completa -->
     <section class="section-gallery" id="galeria">
+        <h2 style="text-align:center; font-family:'Dancing Script'; color:var(--primary-red); font-size:3.8rem; margin-bottom:70px;">Recuerdos de Pongo</h2>
         <div class="gallery-grid" id="grid"></div>
         <footer style="text-align:center; margin-top:120px; padding-bottom:60px; color:#999; font-style:italic;">
             "Para tu amor que es mi tesoro..." <br> Con mucho cariño para la mejor mamá de Pongo.
@@ -261,20 +249,18 @@
                 setTimeout(() => {
                     document.getElementById('btn-photos').style.display = 'block';
                 }, 1400);
-                document.getElementById('cancion').play().catch(e => {});
+                const music = document.getElementById('cancion');
+                music.play().catch(e => console.log("Carga tu cancion.mp3"));
             }
         }
 
         function mostrarGaleria() {
-            document.getElementById('destacada').style.display = 'block';
             const galeria = document.getElementById('galeria');
             galeria.style.display = 'block';
-            
             const grid = document.getElementById('grid');
             grid.innerHTML = ''; 
 
-            // Empezamos desde la foto 2 porque la 1 es la principal
-            for (let i = 2; i <= 21; i++) {
+            for (let i = 1; i <= 21; i++) {
                 const rotation = (Math.random() * 16 - 8).toFixed(2);
                 const card = document.createElement('div');
                 card.className = 'photo-card';
@@ -286,17 +272,9 @@
                 `;
                 grid.appendChild(card);
             }
-
-            // Animación de aparición 1 por 1
+            
             setTimeout(() => {
-                window.scrollTo({ top: document.getElementById('destacada').offsetTop, behavior: 'smooth' });
-                
-                const cards = document.querySelectorAll('.gallery-grid .photo-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, 200 * index); // 200ms de retraso entre cada foto
-                });
+                window.scrollTo({ top: galeria.offsetTop, behavior: 'smooth' });
             }, 100);
         }
     </script>
