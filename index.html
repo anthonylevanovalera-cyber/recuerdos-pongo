@@ -181,8 +181,7 @@
         .photo-card img {
             width: 100%;
             height: auto;
-            max-height: 400px;
-            object-fit: cover;
+            display: block;
         }
 
         .photo-caption {
@@ -233,6 +232,7 @@
         <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
     </section>
 
+    <!-- Sección de Foto Principal - AJUSTADA A .PNG -->
     <section class="main-photo-highlight" id="destacada">
         <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
         <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
@@ -263,12 +263,12 @@
 
         function mostrarGaleria() {
             document.getElementById('destacada').style.display = 'block';
-            const galeria = document.getElementById('galeria');
-            galeria.style.display = 'block';
+            document.getElementById('galeria').style.display = 'block';
             
             const grid = document.getElementById('grid');
             grid.innerHTML = ''; 
 
+            // Carga de fotos 2 al 22 como .jpg según tu lista
             for (let i = 2; i <= 22; i++) {
                 const rotation = (Math.random() * 16 - 8).toFixed(2);
                 const card = document.createElement('div');
