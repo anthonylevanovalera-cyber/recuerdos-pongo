@@ -9,12 +9,11 @@
         :root {
             --primary-red: #d63031;
             --soft-pink: #fff5f5;
-            --gold: #d4af37;
         }
 
         body {
             background-color: var(--soft-pink);
-            font-family: 'Playfair+Display', serif;
+            font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -23,15 +22,9 @@
             overflow-x: hidden;
         }
 
-        .rose-corner {
-            position: fixed;
-            font-size: 2rem;
-            z-index: 100;
-        }
+        .rose-corner { position: fixed; font-size: 2rem; z-index: 100; }
         .top-left { top: 10px; left: 10px; }
         .top-right { top: 10px; right: 10px; }
-        .bottom-left { bottom: 10px; left: 10px; }
-        .bottom-right { bottom: 10px; right: 10px; }
 
         .section-hero {
             height: 100vh;
@@ -51,172 +44,129 @@
         }
 
         .envelope-container {
-            width: 300px;
-            height: 200px;
-            background-color: #f0f0f0;
-            position: relative;
-            cursor: pointer;
-            border: 2px solid #ddd;
+            width: 280px;
+            height: 180px;
+            background-color: #ffffff;
+            border: 2px solid #eee;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.5s;
+            cursor: pointer;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-
         .envelope-container:hover { transform: scale(1.05); }
-
-        .envelope-container::before {
-            content: "Haz clic para abrir ✉️";
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            color: #666;
-        }
+        .envelope-container::after { content: "Abrir ✉️"; font-family: 'Dancing Script'; font-size: 1.8rem; color: #888; }
 
         .letter {
             display: none;
             background: white;
-            padding: 30px;
-            width: 80%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 25px;
+            width: 85%;
+            max-width: 450px;
             margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-top: 5px solid var(--primary-red);
             animation: fadeIn 1s forwards;
         }
 
-        .main-photo-highlight {
-            display: none;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
+        .main-photo-highlight { display: none; padding: 50px 20px; text-align: center; }
+        
         .photo-card {
             background: white;
             padding: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            max-width: 400px;
+            max-width: 380px;
             margin: 0 auto;
+            transform: rotate(-2deg);
         }
 
-        .photo-card img {
-            width: 100%;
-            height: auto;
-            border: 1px solid #eee;
-        }
+        .photo-card img { width: 100%; height: auto; display: block; }
 
-        .section-gallery {
-            display: none;
-            padding: 50px 20px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            background: white;
-            padding: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
+        .section-gallery { display: none; padding: 50px 20px; max-width: 1100px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .gallery-item { background: white; padding: 8px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
         .gallery-item img { width: 100%; height: auto; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         #btn-photos {
             display: none;
-            margin: 40px auto;
-            padding: 15px 30px;
+            margin: 30px auto;
+            padding: 12px 25px;
             background-color: var(--primary-red);
             color: white;
             border: none;
-            border-radius: 25px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
+            font-size: 1.1rem;
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="rose-corner top-left">🌹</div>
     <div class="rose-corner top-right">🌹</div>
-    <div class="rose-corner bottom-left">🌹</div>
-    <div class="rose-corner bottom-right">🌹</div>
 
-    <section class="section-hero" id="hero">
-        <h1>Para la mejor mamá de Pongo</h1>
-        <div class="envelope-container" id="envelope" onclick="abrirSobre()"></div>
+    <section class="section-hero">
+        <h1>Feliz Día de la Madre</h1>
+        <div class="envelope-container" id="envelope" onclick="abrirRegalo()"></div>
         
         <div class="letter" id="letter">
-            <h3 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 2rem;">Feliz Día</h3>
-            <p style="line-height: 1.6; color: #333; font-style: italic;">
-                "Este es un detalle distinto, para recordarte cuánto se te quiere aquí. Gracias por cuidar siempre de Ponguito y Showy con tanto amor."
+            <h3 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 1.8rem;">Para Joselyn</h3>
+            <p style="line-height: 1.6; color: #444;">
+                Este es un detalle especial para recordarte lo mucho que se te quiere. Gracias por ser la mejor mamá para Pongo.
             </p>
         </div>
-
-        <button id="btn-photos" onclick="mostrarTodo()">Ver nuestros recuerdos</button>
+        <button id="btn-photos" onclick="verGaleria()">Ver los recuerdos</button>
     </section>
 
     <section class="main-photo-highlight" id="destacada">
-        <h2 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 2.5rem;">Nuestra foto favorita</h2>
+        <h2 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 2.2rem;">Nuestra foto favorita</h2>
         <div class="photo-card">
-            <img src="img/1.png" alt="Foto Principal">
-            <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 15px;">El comienzo de todo 🐾</p>
+            <img src="img/1.png" alt="Pongo">
+            <p style="font-family: 'Dancing Script'; font-size: 1.4rem;">El comienzo de todo 🐾</p>
         </div>
     </section>
 
     <section class="section-gallery" id="galeria">
-        <div class="gallery-grid" id="grid">
-            <!-- Las fotos se cargarán aquí automáticamente -->
-        </div>
-        <footer style="text-align: center; margin-top: 80px; padding-bottom: 50px; color: #999; font-style: italic;">
-            "Para tu amor que es mi tesoro..." <br> Con mucho cariño para Joselyn.
+        <div class="gallery-grid" id="grid"></div>
+        <footer style="text-align: center; margin-top: 60px; padding-bottom: 40px; color: #999; font-style: italic;">
+            "Para tu amor que es mi tesoro..."
         </footer>
     </section>
 
-    <!-- AUDIO CORREGIDO -->
-    <audio id="musica" loop preload="auto">
+    <!-- AUDIO -->
+    <audio id="musica" loop>
         <source src="cancion.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        const audio = document.getElementById('musica');
+        const cancion = document.getElementById('musica');
 
-        function abrirSobre() {
-            // Activar música
-            audio.play().catch(e => console.log("El navegador bloqueó el audio inicial:", e));
+        function abrirRegalo() {
+            // Intentar reproducir música al hacer clic
+            cancion.play().catch(error => console.log("Error de audio:", error));
             
-            // Animaciones
             document.getElementById('envelope').style.display = 'none';
             document.getElementById('letter').style.display = 'block';
             document.getElementById('btn-photos').style.display = 'block';
         }
 
-        function mostrarTodo() {
+        function verGaleria() {
             document.getElementById('destacada').style.display = 'block';
             document.getElementById('galeria').style.display = 'block';
             
             const grid = document.getElementById('grid');
-            // Cargar las 21 fotos restantes
+            // Cargar las fotos del 2 al 22
             for(let i = 2; i <= 22; i++) {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.innerHTML = `<img src="img/${i}.jpg" alt="Recuerdo ${i}">`;
-                grid.appendChild(item);
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="img/${i}.jpg" alt="Foto ${i}">`;
+                grid.appendChild(div);
             }
             
-            window.scrollTo({
-                top: document.getElementById('destacada').offsetTop,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: document.getElementById('destacada').offsetTop, behavior: 'smooth' });
         }
     </script>
 </body>
