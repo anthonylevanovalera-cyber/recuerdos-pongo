@@ -116,7 +116,7 @@
             background: white;
             z-index: 20;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 30px;
+            padding: 25px;
             box-sizing: border-box;
             text-align: center;
             display: flex;
@@ -155,7 +155,6 @@
             z-index: 60;
         }
 
-        /* SECCIÓN DE FOTO PRINCIPAL */
         .main-photo-highlight {
             display: none;
             text-align: center;
@@ -164,7 +163,6 @@
             margin: 0 auto;
         }
 
-        /* DISEÑO DE POLAROID PARA TODAS LAS FOTOS */
         .photo-card {
             background: white;
             padding: 15px 15px 45px 15px;
@@ -182,7 +180,8 @@
 
         .photo-card img {
             width: 100%;
-            height: 300px;
+            height: auto;
+            max-height: 400px;
             object-fit: cover;
         }
 
@@ -194,7 +193,6 @@
             color: #444;
         }
 
-        /* GALERÍA */
         .section-gallery {
             padding: 50px 20px;
             display: none;
@@ -224,7 +222,7 @@
                 <div class="envelope-front"></div>
                 <div class="letter">
                     <h3 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:1.8rem; margin:0 0 15px 0;">Feliz dia de la madre Joselyn</h3>
-                    <p style="font-family: 'Playfair Display', serif; font-size: 0.85rem; line-height: 1.6; color: #333;">
+                    <p style="font-family: 'Playfair Display', serif; font-size: 0.9rem; line-height: 1.6; color: #333; text-align: left;">
                         Es un detalle distinto, siempre has demostrado el cariño hacia ponguito y shewy, aunque ella no se encuentra fisicamente aqui está en tu corazon. Se que estan a distancia con pongo y te hago este pequeño detalle conmemorando un pedacito de los momentos que han compartido juntos, espero que pronto se vuelvan a reencontrar :)
                     </p>
                 </div>
@@ -235,17 +233,15 @@
         <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
     </section>
 
-    <!-- Foto Principal Destacada -->
     <section class="main-photo-highlight" id="destacada">
         <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
         <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
-            <img src="img/1.png" alt="Foto Principal" onerror="this.src='https://via.placeholder.com/600x800?text=Foto+Principal'">
+            <img src="img/1.png" alt="Foto Principal">
             <div class="photo-caption">El comienzo de todo 🐾</div>
         </div>
         <p style="font-style: italic; color: #666; margin-top: 20px;">Sigue bajando para ver más...</p>
     </section>
 
-    <!-- Galería Completa -->
     <section class="section-gallery" id="galeria">
         <div class="gallery-grid" id="grid"></div>
         <footer style="text-align:center; margin-top:120px; padding-bottom:60px; color:#999; font-style:italic;">
@@ -273,21 +269,19 @@
             const grid = document.getElementById('grid');
             grid.innerHTML = ''; 
 
-            // Empezamos desde la foto 2 porque la 1 es la principal
-            for (let i = 2; i <= 21; i++) {
+            for (let i = 2; i <= 22; i++) {
                 const rotation = (Math.random() * 16 - 8).toFixed(2);
                 const card = document.createElement('div');
                 card.className = 'photo-card';
                 card.style.setProperty('--r', rotation + 'deg');
                 
                 card.innerHTML = `
-                    <img src="img/${i}.jpg" alt="Foto ${i}" onerror="this.src='https://via.placeholder.com/400x500?text=Recuerdo+${i}'">
+                    <img src="img/${i}.jpg" alt="Foto ${i}">
                     <div class="photo-caption">Recuerdo #${i}</div>
                 `;
                 grid.appendChild(card);
             }
 
-            // Animación de aparición 1 por 1
             setTimeout(() => {
                 window.scrollTo({ top: document.getElementById('destacada').offsetTop, behavior: 'smooth' });
                 
@@ -295,7 +289,7 @@
                 cards.forEach((card, index) => {
                     setTimeout(() => {
                         card.classList.add('visible');
-                    }, 200 * index); // 200ms de retraso entre cada foto
+                    }, 150 * index); 
                 });
             }, 100);
         }
