@@ -178,10 +178,13 @@
             transform: translateY(0) rotate(var(--r, 0deg));
         }
 
+        /* AJUSTE CLAVE: Asegurar que la imagen sea visible y ocupe su espacio */
         .photo-card img {
             width: 100%;
             height: auto;
+            min-height: 250px; /* Para que el espacio no se vea vacío mientras carga */
             display: block;
+            background-color: #f9f9f9;
         }
 
         .photo-caption {
@@ -232,11 +235,12 @@
         <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
     </section>
 
-    <!-- Sección de Foto Principal - AJUSTADA A .PNG -->
+    <!-- SECCIÓN DE FOTO PRINCIPAL -->
     <section class="main-photo-highlight" id="destacada">
         <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
         <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
-            <img src="img/1.png" alt="Foto Principal">
+            <!-- RUTA CORREGIDA: Apunta directamente a img/1.png basado en tu lista de archivos -->
+            <img src="./img/1.png" alt="Foto Principal de Pongo">
             <div class="photo-caption">El comienzo de todo 🐾</div>
         </div>
         <p style="font-style: italic; color: #666; margin-top: 20px;">Sigue bajando para ver más...</p>
@@ -263,12 +267,13 @@
 
         function mostrarGaleria() {
             document.getElementById('destacada').style.display = 'block';
-            document.getElementById('galeria').style.display = 'block';
+            const galeria = document.getElementById('galeria');
+            galeria.style.display = 'block';
             
             const grid = document.getElementById('grid');
             grid.innerHTML = ''; 
 
-            // Carga de fotos 2 al 22 como .jpg según tu lista
+            // Carga de fotos 2 al 22 (todas son .jpg según tu lista)
             for (let i = 2; i <= 22; i++) {
                 const rotation = (Math.random() * 16 - 8).toFixed(2);
                 const card = document.createElement('div');
@@ -276,7 +281,7 @@
                 card.style.setProperty('--r', rotation + 'deg');
                 
                 card.innerHTML = `
-                    <img src="img/${i}.jpg" alt="Foto ${i}">
+                    <img src="./img/${i}.jpg" alt="Foto ${i}">
                     <div class="photo-caption">Recuerdo #${i}</div>
                 `;
                 grid.appendChild(card);
