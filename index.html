@@ -229,13 +229,16 @@
         </div>
 
         <button class="btn-photos" id="btn-photos" onclick="mostrarGaleria()">Haz clic para ver los recuerdos</button>
-        <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+        
+        <!-- Audio corregido con preload -->
+        <audio id="cancion" loop preload="auto">
+            <source src="cancion.mp3" type="audio/mpeg">
+        </audio>
     </section>
 
     <section class="main-photo-highlight" id="destacada">
         <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
         <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
-            <!-- SE FUERZA LA RUTA A img/1.png EXACTAMENTE -->
             <img src="img/1.jpg" alt="Foto Principal" loading="eager">
             <div class="photo-caption">El comienzo de todo 🐾</div>
         </div>
@@ -251,24 +254,22 @@
 
     <script>
         function abrirSobre() {
-    const container = document.getElementById('container');
-    const musica = document.getElementById('cancion'); // Referencia al audio
+            const container = document.getElementById('container');
+            const musica = document.getElementById('cancion');
 
-    // 1. REPRODUCCIÓN INMEDIATA: Ponemos el play aquí arriba
-    if (musica) {
-        musica.play().catch(e => console.log("Error de audio:", e));
-    }
+            // Reproducción inmediata al primer contacto
+            if (musica) {
+                musica.play().catch(e => console.log("Error de audio:", e));
+            }
 
-    if(!container.classList.contains('open')) {
-        container.classList.add('open');
-        
-        setTimeout(() => {
-            document.getElementById('btn-photos').style.display = 'block';
-        }, 1400);
-        
-        // Borra la línea 260 original si mueves el play arriba
-    }
-}
+            if(!container.classList.contains('open')) {
+                container.classList.add('open');
+                
+                setTimeout(() => {
+                    document.getElementById('btn-photos').style.display = 'block';
+                }, 1400);
+            }
+        }
 
         function mostrarGaleria() {
             document.getElementById('destacada').style.display = 'block';
