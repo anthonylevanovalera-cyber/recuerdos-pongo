@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Joselyn - Recuerdos de Pongo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital@1&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #d63031;
+            --dark-red: #b32626;
+            --soft-pink: #fff5f5;
+            --envelope-w: 400px;
+            --envelope-h: 250px;
+        }
+
+        body {
+            background-color: var(--soft-pink);
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .rose-corner {
+            position: fixed;
+            font-size: 45px;
+            z-index: 100;
+        }
+        .top-left { top: 20px; left: 20px; }
+        .top-right { top: 20px; right: 20px; }
+        .bottom-left { bottom: 20px; left: 20px; }
+        .bottom-right { bottom: 20px; right: 20px; }
+
+        .section-hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            padding-top: 2vh;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary-red);
+            margin-bottom: 220px;
+            z-index: 10;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: var(--envelope-w);
+            height: var(--envelope-h);
+            z-index: 5;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-red);
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .envelope-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 30;
+            border-top: 150px solid #ff7675;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            transform-origin: top;
+            transition: all 0.6s ease;
+        }
+
+        .envelope-front {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 130px solid var(--primary-red);
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            z-index: 25;
+        }
+
+        .envelope-front::after {
+            content: "";
+            position: absolute;
+            bottom: -130px;
+            left: -200px;
+            width: 0;
+            height: 0;
+            border-bottom: 130px solid transparent;
+            border-left: 200px solid var(--primary-red);
+            border-right: 200px solid var(--primary-red);
+        }
+
+        .letter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 360px;
+            height: 210px;
+            background: white;
+            z-index: 20;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .envelope-container.open .envelope-wrapper::before {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        .envelope-container.open .letter {
+            opacity: 1;
+            transform: translateY(-240px);
+            z-index: 50;
+            height: auto;
+            min-height: 350px;
+        }
+
+        .btn-photos {
+            display: none;
+            background: var(--primary-red);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 80px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(214, 48, 49, 0.4);
+            z-index: 60;
+        }
+
+        /* SECCIÓN DE FOTO PRINCIPAL */
+        .main-photo-highlight {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* DISEÑO DE POLAROID PARA TODAS LAS FOTOS */
+        .photo-card {
+            background: white;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            transform: rotate(var(--r, 0deg));
+            transition: 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .photo-card.visible {
+            opacity: 1;
+            transform: translateY(0) rotate(var(--r, 0deg));
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        /* GALERÍA */
+        .section-gallery {
+            padding: 50px 20px;
+            display: none;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rose-corner top-left">🌹</div>
+    <div class="rose-corner top-right">🌹</div>
+    <div class="rose-corner bottom-left">🌹</div>
+    <div class="rose-corner bottom-right">🌹</div>
+
+    <section class="section-hero">
+        <h1>Feliz Día de la Madre</h1>
+        
+        <div class="envelope-container" id="container" onclick="abrirSobre()">
+            <div class="envelope-wrapper">
+                <div class="envelope-front"></div>
+                <div class="letter">
+                    <h3 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:1.8rem; margin:0 0 15px 0;">Feliz dia de la madre Joselyn</h3>
+                    <p style="font-family: 'Playfair Display', serif; font-size: 0.85rem; line-height: 1.6; color: #333;">
+                        Es un detalle distinto, siempre has demostrado el cariño hacia ponguito y shewy, aunque ella no se encuentra fisicamente aqui está en tu corazon. Se que estan a distancia con pongo y te hago este pequeño detalle conmemorando un pedacito de los momentos que han compartido juntos, espero que pronto se vuelvan a reencontrar :)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-photos" id="btn-photos" onclick="mostrarGaleria()">Haz clic para ver los recuerdos</button>
+        <audio id="cancion" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+    </section>
+
+    <!-- Foto Principal Destacada -->
+    <section class="main-photo-highlight" id="destacada">
+        <h2 style="font-family:'Dancing Script'; color:var(--primary-red); font-size:2.5rem;">Nuestra foto favorita</h2>
+        <div class="photo-card visible" style="max-width: 450px; margin: 30px auto; --r: -2deg;">
+            <img src="img/1.jpg" alt="Foto Principal" onerror="this.src='https://via.placeholder.com/600x800?text=Foto+Principal'">
+            <div class="photo-caption">El comienzo de todo 🐾</div>
+        </div>
+        <p style="font-style: italic; color: #666; margin-top: 20px;">Sigue bajando para ver más...</p>
+    </section>
+
+    <!-- Galería Completa -->
+    <section class="section-gallery" id="galeria">
+        <div class="gallery-grid" id="grid"></div>
+        <footer style="text-align:center; margin-top:120px; padding-bottom:60px; color:#999; font-style:italic;">
+            "Para tu amor que es mi tesoro..." <br> Con mucho cariño para la mejor mamá de Pongo.
+        </footer>
+    </section>
+
+    <script>
+        function abrirSobre() {
+            const container = document.getElementById('container');
+            if(!container.classList.contains('open')) {
+                container.classList.add('open');
+                setTimeout(() => {
+                    document.getElementById('btn-photos').style.display = 'block';
+                }, 1400);
+                document.getElementById('cancion').play().catch(e => {});
+            }
+        }
+
+        function mostrarGaleria() {
+            document.getElementById('destacada').style.display = 'block';
+            const galeria = document.getElementById('galeria');
+            galeria.style.display = 'block';
+            
+            const grid = document.getElementById('grid');
+            grid.innerHTML = ''; 
+
+            // Empezamos desde la foto 2 porque la 1 es la principal
+            for (let i = 2; i <= 21; i++) {
+                const rotation = (Math.random() * 16 - 8).toFixed(2);
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.style.setProperty('--r', rotation + 'deg');
+                
+                card.innerHTML = `
+                    <img src="img/${i}.jpg" alt="Foto ${i}" onerror="this.src='https://via.placeholder.com/400x500?text=Recuerdo+${i}'">
+                    <div class="photo-caption">Recuerdo #${i}</div>
+                `;
+                grid.appendChild(card);
+            }
+
+            // Animación de aparición 1 por 1
+            setTimeout(() => {
+                window.scrollTo({ top: document.getElementById('destacada').offsetTop, behavior: 'smooth' });
+                
+                const cards = document.querySelectorAll('.gallery-grid .photo-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, 200 * index); // 200ms de retraso entre cada foto
+                });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
